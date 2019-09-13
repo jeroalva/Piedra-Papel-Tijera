@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Events!</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+          <div class="jumbotron">
+            <h2 id="user-text">Start playing by typing "r", "p" or "s"</strong></span></h2>
+            <br>
+            <h2 id="computer-text"></h2>
+            <br>
+            <h2 id="comparacion-de-resultados-wins"></h2>
+            <br>
+            <h2 id="comparacion-de-resultados-looses"></h2>
+            <br>
+            <h2 id="comparacion-de-resultados-ties"></h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- We have to put this at the end of our document to ensure the user-text
+         span exists when we try to access it. -->
+    <script type="text/javascript">
+      var opcionesCompu = ["r","p","s"];
+      // Let's start by grabbing a reference to the <span> below.
+      var userText = document.getElementById("user-text");
+      var computerText = document.getElementById("computer-text");
+      var compResultadosWins = document.getElementById("comparacion-de-resultados-wins");
+      var compResultadosLooses = document.getElementById("comparacion-de-resultados-looses");
+      var compResultadosTies = document.getElementById("comparacion-de-resultados-ties");
+
+      var wins = 0;
+      var looses = 0;
+      var ties = 0;
+      console.log(userText);
+      // Next, we give JavaScript a function to execute when onkeyup event fires.
+      
+        console.log(compResultadosWins);
+        console.log(compResultadosLooses);
+        console.log(compResultadosTies);
+
+      document.onkeyup = function(jero) {
+        if(jero.key === "r" || jero.key === "p" || jero.key === "s"){
+        console.log("You typed: " + jero.key);
+        userText.textContent = "You typed: " + jero.key;
+        var resultado = opcionesCompu[Math.floor(Math.random()*3)];
+        computerText.textContent = "The computer chose: " + resultado + "!";
+        
+        if((jero.key === "r" && resultado === "r" )||(jero.key === "p" && resultado === "p")||(jero.key === "s" && resultado === "s")){
+          ties = ties + 1;
+          compResultadosWins.textContent = "wins: " + wins;
+          compResultadosLooses.textContent = "looses: " + looses;
+          compResultadosTies.textContent = "ties: " + ties;
+        }
+        else if((jero.key === "r" && resultado === "s")||(jero.key === "p" && resultado === "r")||(jero.key === "s" && resultado === "p")){
+          wins = wins + 1;
+          compResultadosWins.textContent = "wins: " + wins;
+          compResultadosLooses.textContent = "looses: " + looses;
+          compResultadosTies.textContent = "ties: " + ties;
+        }
+        else if((jero.key === "s" && resultado === "r")||(jero.key === "r" && resultado === "p")||(jero.key === "p" && resultado === "s")){
+          looses = looses + 1;
+          compResultadosWins.textContent = "wins: " + wins;
+          compResultadosLooses.textContent = "looses: " + looses;
+          compResultadosTies.textContent = "ties: " + ties;
+        }
+        }
+
+      };
+    </script>
+  </body>
+</html>
